@@ -1,2 +1,2 @@
 ## NOTE: Much of this mod's functionality is also included in my [Useful Utilities](https://github.com/doombubbles/useful-utilities#readme) mod, which will receive more frequent updates.
-- Some additional fixes
+- Fixed for BTD6 v52

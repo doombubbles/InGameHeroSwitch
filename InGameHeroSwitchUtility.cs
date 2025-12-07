@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BTD_Mod_Helper.Extensions;
 using HarmonyLib;
+using Il2CppAssets.Scripts.Models;
 using Il2CppAssets.Scripts.Models.TowerSets;
 using Il2CppAssets.Scripts.Unity;
 using Il2CppAssets.Scripts.Unity.Bridge;
@@ -8,15 +9,13 @@ using Il2CppAssets.Scripts.Unity.UI_New.InGame;
 using Il2CppAssets.Scripts.Unity.UI_New.InGame.RightMenu;
 using Il2CppAssets.Scripts.Unity.UI_New.InGame.StoreMenu;
 using UnityEngine;
-#if USEFUL_UTILITIES
-using BTD_Mod_Helper.Api.ModOptions;
-#else
-using static InGameHeroSwitch.InGameHeroSwitchMod;
-#endif
 
 #if USEFUL_UTILITIES
+using BTD_Mod_Helper.Api.ModOptions;
+
 namespace UsefulUtilities.Utilities;
 #else
+using static InGameHeroSwitch.InGameHeroSwitchMod;
 namespace InGameHeroSwitch;
 #endif
 
@@ -43,7 +42,7 @@ public class InGameHeroSwitchUtility
 
     public static void Update()
     {
-        if (InGame.instance == null) return;
+        if (!InGame.instance || InGame.Bridge == null || InGame.instance.ReviewMapMode || InGame.Bridge.IsSpectatorMode || InGame.instance.GameType == GameType.Rogue) return;
 
         if (CycleDown.JustPressed()) cycleDown = true;
         if (CycleUp.JustPressed()) cycleUp = true;
@@ -95,6 +94,8 @@ public class InGameHeroSwitchUtility
 
         ResetInventory(newHero);
         CurrentHero = newHero;
+        
+        InGame.instance.InputManager.SetSelected(null);
     }
 
     private static void ResetInventory(string newHero)
