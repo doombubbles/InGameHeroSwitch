@@ -1,4 +1,4 @@
-﻿using BTD_Mod_Helper;
+using BTD_Mod_Helper;
 using BTD_Mod_Helper.Api.ModOptions;
 using InGameHeroSwitch;
 using MelonLoader;
@@ -6,6 +6,7 @@ using UnityEngine;
 
 [assembly: MelonInfo(typeof(InGameHeroSwitchMod), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+[assembly: MelonGame("Ninja Kiwi", "BloonsTD6-Epic")]
 
 namespace InGameHeroSwitch;
 
